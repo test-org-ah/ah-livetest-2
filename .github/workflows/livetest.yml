@@ -1,0 +1,21 @@
+name: livetest
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'A message'
+        required: false
+        default: 'hello'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo
+        run: echo "message is ${{ inputs.message }}"
+      - name: Make artifact
+        run: mkdir -p out && echo hi > out/result.txt
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: livetest-artifact
+          path: out/
