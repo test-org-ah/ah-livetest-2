@@ -1,0 +1,9 @@
+name: failing
+on:
+  workflow_dispatch:
+jobs:
+  boom:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail on purpose
+        run: exit 1
